@@ -4,7 +4,7 @@ from ultralytics import YOLO
 
 # -------- Einstellungen --------
 MODEL_PATH = "../Modelle/Drone_model_100epochen_yolo11x.pt"
-SOURCE = "Drohnen_Video.mp4"  # oder "Car_video.mp4"
+SOURCE = "Drohnen_Video.mp4"  # oder "Car_video.mp4", 0 für webcam
 TRACKER = "bytetrack.yaml"
 TARGET_NAMES = []                # [] = alle Klassen
 CONF_THRES = 0.05
