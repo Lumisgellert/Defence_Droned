@@ -3,11 +3,11 @@ import time, math, cv2, numpy as np
 from ultralytics import YOLO
 
 # -------- Einstellungen --------
-MODEL_PATH = "Modelle/yolo11x.pt"
-SOURCE = "Car_video.mp4"  # oder "Car_video.mp4"
-TRACKER = "botsort.yaml"
+MODEL_PATH = "Modelle/Drone_model_100epochen_yolo11x.pt"
+SOURCE = "Drohnen_Video.mp4"  # oder "Car_video.mp4"
+TRACKER = "bytetrack.yaml"
 TARGET_NAMES = []                # [] = alle Klassen
-CONF_THRES = 0.25
+CONF_THRES = 0.05
 IOU_THRES = 0.45
 IMG_SIZE = 640
 DEADZONE_PX = 30
@@ -190,3 +190,4 @@ try:
 finally:
     cap.release()
     cv2.destroyAllWindows()
+
