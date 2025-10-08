@@ -5,7 +5,7 @@ import numpy as np
 from ultralytics import YOLO
 
 # -------- Einstellungen --------
-MODEL_PATH = "Modelle/yolo11x.pt"  # dein Pfad
+MODEL_PATH = "../Modelle/yolo11x.pt"  # dein Pfad
 SOURCE = "Car_video.mp4"                        # 0 = Webcam
 TRACKER = "botsort.yaml"        # oder "botsort.yaml"
 TARGET_NAMES = ["cup"]            # Zielklasse(n)

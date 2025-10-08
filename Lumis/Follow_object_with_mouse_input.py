@@ -3,7 +3,7 @@ import time, math, cv2, numpy as np
 from ultralytics import YOLO
 
 # -------- Einstellungen --------
-MODEL_PATH = "Modelle/Drone_model_100epochen_yolo11x.pt"
+MODEL_PATH = "../Modelle/Drone_model_100epochen_yolo11x.pt"
 SOURCE = "Drohnen_Video.mp4"  # oder "Car_video.mp4"
 TRACKER = "bytetrack.yaml"
 TARGET_NAMES = []                # [] = alle Klassen
