@@ -1,9 +1,11 @@
 from collections import defaultdict
 import time, math, cv2, numpy as np
 from ultralytics import YOLO
-import Daniel.Globale_Variable as gv
+import Globale_Variable as gv
 import threading as th
 from printdxy import Printer
+from PLOTTER import LivePlot2D
+from steuerung_servo import track_step
 
 # -------- Einstellungen --------
 MODEL_PATH = "yolo11x.pt"
@@ -65,12 +67,17 @@ def on_mouse(event, x, y, flags, param):
 cv2.namedWindow("YOLO Zielhilfe")
 cv2.setMouseCallback("YOLO Zielhilfe", on_mouse)
 
+plot = LivePlot2D(window_s=8.0, fps_hint=60)  # ADD
+t_abs = time.perf_counter()                   # ADD
+
 
 try:
 
     prev_t = time.time()
     while True:
-        th.Thread(target=Printer, daemon=True).start()  # lässt die funktion Printer aus printdxy parallel laufen
+        #th.Thread(target=Printer, daemon=True).start()  # lässt die funktion Printer aus printdxy parallel laufen
+        yaw, tilt = track_step(ex=gv.dx, ey=gv.dy)
+        print(yaw, tilt)
         ok, frame = cap.read()
         if not ok:
             break
@@ -175,6 +182,12 @@ try:
         else:
             cv2.putText(out, "Linksklick: Objekt wählen | Rechtsklick: löschen",
                         (10, h-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, CLR_WHT, 2)
+
+
+        # --- Live-Plot updaten (ganz am Ende des Schleifen-Durchlaufs) ---
+        t_abs += 0 if 'dt' not in locals() else 0  # ignorieren, nur Platzhalter
+        plot.update(time.perf_counter(), dx, dy, yaw, tilt)  # ADD
+        # ---------------------------------------------------------------
 
         # FPS
         now = time.time()
