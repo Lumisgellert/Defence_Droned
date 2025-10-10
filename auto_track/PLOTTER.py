@@ -35,5 +35,3 @@ class LivePlot2D:
             autos(self.ax_e, list(self.ex)+list(self.ey))
             autos(self.ax_u, list(self.uy)+list(self.ut))
         self.fig.canvas.draw(); plt.pause(self.pause)
-
-plot = LivePlot2D(window_s=8.0, fps_hint=60)

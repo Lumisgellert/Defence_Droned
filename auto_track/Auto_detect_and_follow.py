@@ -8,7 +8,7 @@ from PLOTTER import LivePlot2D
 from steuerung_servo import track_step
 
 # -------- Einstellungen --------
-MODEL_PATH = "yolo11x.pt"
+MODEL_PATH = "yolo11n.pt"
 SOURCE = 0  # oder "Car_video.mp4", 0 für webcam,  "Drohnen_Video.mp4"
 TRACKER = "bytetrack.yaml"
 TARGET_NAMES = []                # [] = alle Klassen
@@ -18,6 +18,7 @@ IMG_SIZE = 640
 DEADZONE_PX = 30
 CLICK_SELECT_RADIUS = 80
 ZOOM_SIZE = 150                  # Größe des Zoomfensters in Pixeln
+PLOT = False
 
 # Farben
 CLR_GRAY = (160,160,160)
@@ -67,12 +68,12 @@ def on_mouse(event, x, y, flags, param):
 cv2.namedWindow("YOLO Zielhilfe")
 cv2.setMouseCallback("YOLO Zielhilfe", on_mouse)
 
-plot = LivePlot2D(window_s=8.0, fps_hint=60)  # ADD
-t_abs = time.perf_counter()                   # ADD
+if PLOT:
+    plot = LivePlot2D(window_s=8.0, fps_hint=60)  # ADD
+    t_abs = time.perf_counter()                   # ADD
 
 
 try:
-
     prev_t = time.time()
     while True:
         #th.Thread(target=Printer, daemon=True).start()  # lässt die funktion Printer aus printdxy parallel laufen
@@ -183,11 +184,11 @@ try:
             cv2.putText(out, "Linksklick: Objekt wählen | Rechtsklick: löschen",
                         (10, h-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, CLR_WHT, 2)
 
-
-        # --- Live-Plot updaten (ganz am Ende des Schleifen-Durchlaufs) ---
-        t_abs += 0 if 'dt' not in locals() else 0  # ignorieren, nur Platzhalter
-        plot.update(time.perf_counter(), dx, dy, yaw, tilt)  # ADD
-        # ---------------------------------------------------------------
+        if PLOT:
+            # --- Live-Plot updaten (ganz am Ende des Schleifen-Durchlaufs) ---
+            t_abs += 0 if 'dt' not in locals() else 0  # ignorieren, nur Platzhalter
+            plot.update(time.perf_counter(), dx, dy, yaw, tilt)  # ADD
+            # ---------------------------------------------------------------
 
         # FPS
         now = time.time()
