@@ -18,7 +18,7 @@ IMG_SIZE = 640
 DEADZONE_PX = 30
 CLICK_SELECT_RADIUS = 80
 ZOOM_SIZE = 150                  # Größe des Zoomfensters in Pixeln
-PLOT = False
+PLOT = True
 
 # Farben
 CLR_GRAY = (160,160,160)
