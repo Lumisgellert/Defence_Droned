@@ -9,7 +9,7 @@ from steuerung_servo import track_step
 
 # -------- Einstellungen --------
 MODEL_PATH = "yolo11n.pt"
-SOURCE =  0 #f"D:\PyCharm\Drohnen_Projekt\Car_video.mp4"  # oder "Car_video.mp4", 0 für webcam,  "Drohnen_Video.mp4"
+SOURCE =  f"D:\PyCharm\Drohnen_Projekt\Car_video.mp4"  # oder "Car_video.mp4", 0 für webcam,  "Drohnen_Video.mp4"
 TRACKER = "bytetrack.yaml"
 TARGET_NAMES = []                # [] = alle Klassen
 CONF_THRES = 0.05
@@ -18,7 +18,7 @@ IMG_SIZE = 640
 DEADZONE_PX = 30
 CLICK_SELECT_RADIUS = 80
 ZOOM_SIZE = 150                  # Größe des Zoomfensters in Pixeln
-PLOT = True
+PLOT = False
 
 # Farben
 CLR_GRAY = (160,160,160)
