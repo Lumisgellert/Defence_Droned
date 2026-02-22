@@ -178,10 +178,10 @@ try:
                 if crop.size > 0:
                     zoom_window = cv2.resize(crop, (ZOOM_SIZE, ZOOM_SIZE), interpolation=cv2.INTER_CUBIC)
             else:
-                cv2.putText(out, "Ziel verloren – Rechtsklick zum Zurücksetzen",
+                cv2.putText(out, "Ziel verloren – Rechtsklick zum Zuruecksetzen",
                             (10, h-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0,0,255), 2)
         else:
-            cv2.putText(out, "Linksklick: Objekt wählen | Rechtsklick: löschen",
+            cv2.putText(out, "Linksklick: Objekt waehlen | Rechtsklick: loeschen",
                         (10, h-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, CLR_WHT, 2)
 
         if PLOT:
